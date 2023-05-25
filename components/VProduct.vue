@@ -2,7 +2,16 @@
   <div class="v-product" @click="detailHander">
     <h1 class="v-product__title">فروش ویژه</h1>
     <img class="v-product__img" :src="data.image" alt="" />
-    <v-btn icon>+</v-btn>
+    <!-- <v-btn icon>+</v-btn> -->
+    <button
+      @click="
+        (e) => {
+          addToCart(e)
+        }
+      "
+    >
+      click to add
+    </button>
     <h2 class="v-product__description">
       {{ data.title }}
     </h2>
@@ -19,7 +28,9 @@
         {{ data.discountPercent ? discountedPrice : data.price }}
       </h3>
 
-      <span v-if="data.discountPercent" class="v-product__discount"> {{ data.price }}</span>
+      <span v-if="data.discountPercent" class="v-product__discount">
+        {{ data.price }}</span
+      >
     </div>
   </div>
 </template>
@@ -44,8 +55,14 @@ export default {
   methods: {
     detailHander() {
       this.$emit('show-detail', this.data)
-    }
-  }
+    },
+
+    addToCart(e) {
+      e.stopPropagation()
+
+      this.$store.dispatch('addProduct', this.data)
+    },
+  },
 }
 </script>
 

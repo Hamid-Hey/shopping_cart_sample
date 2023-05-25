@@ -1,9 +1,15 @@
 <template>
-    <div>Shopping Cart Page</div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'ShoppingCartPage',
-  }
-  </script>
+  <div>{{ cartItems }}</div>
+</template>
+
+<script>
+export default {
+  name: 'ShoppingCartPage',
+
+  computed: {
+    cartItems() {
+      return this.$store.getters.getProducts
+    },
+  },
+}
+</script>
