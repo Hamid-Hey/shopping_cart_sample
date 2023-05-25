@@ -1,0 +1,52 @@
+/**
+ * Body Font
+ * *********************************/
+ @font-face {
+    font-family: IRANYekan;
+    font-style: normal;
+    font-weight: normal;
+    src: url('~/static/fonts/eot/iranyekanRegular.eot');
+    src: url('~/static/fonts/eot/iranyekanRegular.eot?#iefix') format('embedded-opentype'),
+      url('~/static/fonts/woff/iranyekanRegular.woff') format('woff'),
+      url('~/static/fonts/ttf/iranyekanRegular.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: IRANYekan;
+    font-style: normal;
+    font-weight: 500;
+    src: url('~/static/fonts/eot/iranyekanMedium.eot');
+    src: url('~/static/fonts/eot/iranyekanMedium.eot?#iefix') format('embedded-opentype'),
+      url('~/static/fonts/woff/iranyekanMedium.woff') format('woff'),
+      url('~/static/fonts/ttf/iranyekanMedium.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: IRANYekan;
+    font-style: normal;
+    font-weight: bold;
+    src: url('~/static/fonts/eot/iranyekanBold.eot');
+    src: url('~/static/fonts/eot/iranyekanBold.eot?#iefix') format('embedded-opentype'),
+      url('~/static/fonts/woff/iranyekanBold.woff') format('woff'),
+      url('~/static/fonts/ttf/iranyekanBold.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: IRANYekan;
+    font-style: normal;
+    font-weight: 800;
+    src: url('~/static/fonts/eot/iranyekanExtrabold.eot');
+    src: url('~/static/fonts/eot/iranyekanExtrabold.eot?#iefix') format('embedded-opentype'),
+      url('~/static/fonts/woff/iranyekanExtrabold.woff') format('woff'),
+      url('~/static/fonts/ttf/iranyekanExtrabold.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: IRANYekan;
+    font-style: normal;
+    font-weight: 900;
+    src: url('~/static/fonts/eot/iranyekanBlack.eot');
+    src: url('~/static/fonts/eot/iranyekanBlack.eot?#iefix') format('embedded-opentype'),
+      url('~/static/fonts/woff/iranyekanBlack.woff') format('woff'),
+      url('~/static/fonts/ttf/iranyekanBlack.ttf') format('truetype');
+  }
