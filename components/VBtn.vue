@@ -1,6 +1,8 @@
 <template>
   <div>
-    <button :class="['v-btn', { 'v-btn--icon': icon }]">
+    <button
+      :class="['v-btn', { 'v-btn--outline': outline, 'v-btn--icon': icon }]"
+    >
       <slot></slot>
     </button>
   </div>
@@ -15,6 +17,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    outline: {
+      type: Boolean,
+      default: false,
+    }
   },
 }
 </script>
@@ -54,6 +60,12 @@ export default {
     color: #f04055;
     font-size: 27px;
     padding-top: 2px;
+  }
+
+  &--outline {
+    background: none;
+    border: 1px solid #6e6e6e;
+    color: #6e6e6e;
   }
 }
 </style>
