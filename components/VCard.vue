@@ -28,9 +28,11 @@ export default {
   border-radius: 10px;
   min-width: 280px;
   direction: rtl;
+  margin-top: 77px;
 
   &--outline {
     background-color: unset;
+    margin: unset;
     min-width: unset;
     padding: 6px 12px;
     font-size: 12px;

@@ -43,23 +43,28 @@
       </div>
 
       <div>
-        <div class="product-detail__backward-btn-wrapper">
-          <v-btn class="product-detail__backward-btn" @click="backwardHandler" outline>بازگشت</v-btn>
-        </div>
-
         <v-card class="product-detail__card">
           <div class="product-detail__card-title">فروشنده</div>
-          <div>
-            <span>icon</span>
+          <div class="product-detail__seller-wrapper">
+            <img
+              class="product-detail__seller-icon"
+              src="~/static/img/company.svg"
+              alt=""
+            />
             <span class="product-detail__seller">تیرینک</span>
-            <v-chip>رسمی</v-chip>
+            <span class="product-detail__label">رسمی</span>
           </div>
 
-          <div>
-            <span>۸۳٪</span>
+          <div class="product-detail__quality-description">
+            <strong class="product-detail__quality-description--light"
+              >۸۳٪</strong
+            >
             <span>رضایت از کالا</span>
+            <span>|</span>
             <span>عملکرد</span>
-            <span>عالی</span>
+            <strong class="product-detail__quality-description--light2"
+              >عالی</strong
+            >
           </div>
 
           <hr />
@@ -68,20 +73,25 @@
           </div>
           <hr />
 
-          <div>
+          <div class="product-detail__price-container">
             <div class="product-detail__price-title-wrapper">
+              <img
+                class="product-detail__price-title-icon"
+                src="~/static/img/info.svg"
+                alt=""
+              />
               <span class="product-detail__price-title">قیمت فروشنده</span>
             </div>
 
             <div class="product-detail__price-wrapper">
-              <div>
-                <span>۱۰۷۰۰۰</span>
+              <div class="product-detail__price-original">
+                <span class="product-detail__price">۱۰۷۰۰۰</span>
                 <v-chip>۱۵٪</v-chip>
               </div>
 
               <div>
-                <span>۹۰۹۵۰</span>
-                <span>تومان</span>
+                <span class="product-detail__price-discounted">۹۰۹۵۰</span>
+                <span class="product-detail__price-unit">تومان</span>
               </div>
             </div>
           </div>
@@ -112,12 +122,6 @@ export default {
       return this.data.find((item) => item.id === this.$route.params.id)
     },
   },
-
-  methods: {
-    backwardHandler() {
-      // this.$router.push('')
-    }
-  }
 }
 </script>
 
@@ -174,13 +178,12 @@ export default {
   }
 
   &__btn-wrapper {
-    margin-top: 20px;
     margin-bottom: 10px;
   }
 
   &__guarantee {
-    font-size: 13px;
-    font-weight: 800;
+    font-size: 14px;
+    font-weight: 700;
     margin: 20px 0;
     color: #5a5a5a;
   }
@@ -200,6 +203,75 @@ export default {
   }
 
   &__backward-btn {
+  }
+
+  &__label {
+    font-size: 12px;
+    color: #0593d1;
+    background-color: #deebf3;
+    padding: 3px 8px;
+    border-radius: 13px;
+    margin-right: 8px;
+  }
+
+  &__seller-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  &__seller-icon {
+    margin-left: 4px;
+  }
+
+  &__quality-description {
+    font-size: 14px;
+    color: gray;
+
+    &--light {
+      color: rgb(38, 168, 38);
+    }
+
+    &--light2 {
+      color: rgb(0, 129, 90);
+    }
+  }
+
+  &__price-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__price-title-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__price-title-icon {
+    margin-left: 4px;
+  }
+
+  &__price-wrapper {
+    margin-top: 35px;
+  }
+
+  &__price-original {
+    display: flex;
+  }
+
+  &__price {
+    margin-left: 8px;
+    text-decoration: line-through;
+    color: gray;
+  }
+
+  &__price-discounted {
+    font-size: 26px;
+    font-weight: 600;
+  }
+
+  &__price-unit {
+    font-size: 10px;
   }
 }
 </style>
