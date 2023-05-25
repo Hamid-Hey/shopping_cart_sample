@@ -1,5 +1,5 @@
 <template>
-  <div class="v-product">
+  <div class="v-product" @click="detailHander">
     <h1 class="v-product__title">فروش ویژه</h1>
     <img class="v-product__img" :src="data.image" alt="" />
     <v-btn icon>+</v-btn>
@@ -40,6 +40,12 @@ export default {
       return (1 - this.data.discountPercent / 100) * this.data.price
     },
   },
+
+  methods: {
+    detailHander() {
+      this.$emit('show-detail', this.data)
+    }
+  }
 }
 </script>
 
@@ -47,8 +53,9 @@ export default {
 .v-product {
   padding: 15px 10px;
   direction: rtl;
-  border: 1px solid blue;
+  border: 1px solid rgb(236, 236, 236);
   max-width: 400px;
+  min-height: 463px;
   display: inline-block;
   direction: rtl;
 
