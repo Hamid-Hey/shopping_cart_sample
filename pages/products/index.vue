@@ -18,6 +18,13 @@
         @click="showDiscounted()"
         >فقط کالاهای تخفیف‌دار</span
       >
+
+      <div class="product-list__cart-warapper">
+        <span class="product-list__cart-link" @click="showCart">سبد خرید</span>
+        <v-chip class="product-list__cart-notification">{{
+          totalCarts
+        }}</v-chip>
+      </div>
     </div>
 
     <div>
@@ -43,6 +50,8 @@ export default {
 
       mostViewed: true,
       hasDiscount: false,
+
+      totalCarts: 0
     }
   },
 
@@ -56,10 +65,8 @@ export default {
       } else {
         return this.products
       }
-    },
+    }
   },
-
-  watch: {},
 
   mounted() {
     Api()
@@ -67,6 +74,13 @@ export default {
       .then((res) => {
         this.products = res.data
       })
+
+    const cartNotification = JSON.parse(localStorage.getItem('shoppingCart'))
+    if (cartNotification) {
+      this.totalCarts = cartNotification.length
+    } else {
+      this.totalCarts = 0
+    }
   },
 
   methods: {
@@ -83,6 +97,10 @@ export default {
       this.hasDiscount = false
       this.mostViewed = true
     },
+
+    showCart() {
+      this.$router.push(`/shopping-cart`)
+    },
   },
 }
 </script>
@@ -94,6 +112,9 @@ export default {
     font-family: 'IRANYekan';
     font-size: 12px;
     padding: 20px 5px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
   }
 
   &__active-filter {
@@ -105,12 +126,29 @@ export default {
 
   &__filter-title {
     margin-left: 16px;
+    direction: rtl;
     cursor: pointer;
   }
 
   &__filter-items {
     margin-left: 8px;
     cursor: pointer;
+  }
+
+  &__cart-link {
+    font-weight: 800;
+    margin-right: 50px;
+    cursor: pointer;
+  }
+
+  &__cart-warapper {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+  &__cart-notification {
+    margin-right: 5px;
   }
 }
 </style>
