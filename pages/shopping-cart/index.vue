@@ -14,7 +14,7 @@
     <div class="shopping-cart__container">
       <div class="shopping-cart__main">
         <h2 class="shopping-cart__title">سبد خرید شما</h2>
-        <span class="shopping-cart__count">{{ cartItems.length }} کالا</span>
+        <span class="shopping-cart__count">{{ totalCount }} کالا</span>
 
         <div class="shopping-cart__items">
           <v-cart
@@ -29,12 +29,12 @@
         <div>
           <div class="shopping-cart__bottomline">
             <span>قیمت کالاها</span>
-            <span>۴۹۵۴۰۰۰ تومان</span>
+            <span>{{ totalPrice }} تومان</span>
           </div>
 
           <div class="shopping-cart__bottomline">
             <span>جمع سبد خرید</span>
-            <span>۴۹۲۱۷۵۰ تومان</span>
+            <span>{{ totlaCartPrice }} تومان</span>
           </div>
         </div>
 
@@ -56,16 +56,77 @@ export default {
 
   computed: {
     totalPrice() {
-      const total = this.cartItems.map((item) => (item.price += item.price))
-      return total
+      const totalCarts = this.$store.getters.getShoppingCarts
+      let totalPrice = 0
+
+      totalCarts.forEach((item) => {
+        totalPrice += parseInt(item.price)
+      })
+
+      return totalPrice
+    },
+
+    totlaCartPrice() {
+      const totalCarts = this.$store.getters.getShoppingCarts
+      let totalPrice = 0
+
+      totalCarts.forEach((item) => {
+        if (item.discountPercent) {
+          totalPrice += parseInt(
+            ((100 - item.discountPercent) / 100) * item.price
+          )
+        } else {
+          totalPrice += parseInt(item.price)
+        }
+      })
+
+      return totalPrice
+    },
+
+    totalCount() {
+      return this.$store.getters.getShoppingCarts.length
     },
   },
 
   mounted() {
-    const cartData = localStorage.getItem('shoppingCart')
-    if (cartData) {
-      this.cartItems = JSON.parse(cartData)
-    }
+    const rawData = this.$store.getters.getShoppingCarts
+
+    const filterdCarts = Object.values(
+      rawData.reduce(
+        (
+          acc,
+          {
+            id,
+            title,
+            rate,
+            image,
+            remainingNumber,
+            price,
+            discountPercent,
+            deliveryLabel,
+          }
+        ) => {
+          if (!acc[id]) {
+            acc[id] = {
+              id,
+              title,
+              rate,
+              image,
+              remainingNumber,
+              price,
+              discountPercent,
+              deliveryLabel,
+              count: 1,
+            }
+          } else {
+            acc[id].count++
+          }
+          return acc
+        },
+        {}
+      )
+    )
+    this.cartItems = filterdCarts
   },
 
   methods: {

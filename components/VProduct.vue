@@ -2,17 +2,16 @@
   <div class="v-product" @click="detailHander">
     <h1 class="v-product__title">فروش ویژه</h1>
     <img class="v-product__img" :src="data.image" alt="" />
-    <!-- <v-btn icon>+</v-btn> -->
-    <button
-      @click="
+    <v-btn
+      icon
+      :method="
         (e) => {
           addToCart(e)
         }
       "
     >
-      click to add
-    </button>
-
+      <img src="~/static/img/plus.svg" alt="" />
+    </v-btn>
 
     <h2 class="v-product__description">
       {{ data.title }}
@@ -62,23 +61,16 @@ export default {
     addToCart(e) {
       e.stopPropagation()
 
-      const existingData = JSON.parse(localStorage.getItem('shoppingCart')) || []
-      existingData.unshift(this.data)
+      this.$store.dispatch('addProduct', this.data)
 
-      const updatedData = JSON.stringify(existingData)
-
-      localStorage.setItem('shoppingCart', updatedData);
-
-      const notification = JSON.parse(localStorage.getItem('shoppingCart')) || []
-
-      this.$emit('notification', notification.length)
+      this.$emit('add-product', this.data)
     },
 
     removeFromCart(e) {
       e.stopPropagation()
 
       this.$store.dispatch('removeProduct', this.data)
-    }
+    },
   },
 }
 </script>
@@ -115,6 +107,10 @@ export default {
     color: #666666;
     margin-top: 44px;
     margin-bottom: 34px;
+  }
+
+  &__add-btn {
+    color: #f04055;
   }
 
   &__rating {

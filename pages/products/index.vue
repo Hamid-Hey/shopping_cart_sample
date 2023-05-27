@@ -50,8 +50,6 @@ export default {
 
       mostViewed: true,
       hasDiscount: false,
-
-      totalCarts: 0
     }
   },
 
@@ -65,7 +63,11 @@ export default {
       } else {
         return this.products
       }
-    }
+    },
+
+    totalCarts() {
+      return this.$store.getters.getShoppingCarts.length
+    },
   },
 
   mounted() {
@@ -74,13 +76,6 @@ export default {
       .then((res) => {
         this.products = res.data
       })
-
-    const cartNotification = JSON.parse(localStorage.getItem('shoppingCart'))
-    if (cartNotification) {
-      this.totalCarts = cartNotification.length
-    } else {
-      this.totalCarts = 0
-    }
   },
 
   methods: {

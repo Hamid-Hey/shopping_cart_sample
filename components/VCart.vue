@@ -7,7 +7,12 @@
       </div>
 
       <div>
-        <h1 class="v-cart__title">{{ data.title }}</h1>
+        <h1 class="v-cart__title">
+          {{ data.title }}
+          <span v-if="data.count > 1" class="v-cart__title--highlight">
+            ({{ data.count }} عدد)</span
+          >
+        </h1>
 
         <ul>
           <li class="v-cart__list-item">
@@ -104,6 +109,13 @@ ul {
   padding: 0;
 }
 .v-cart {
+  &:not(:last-child) {
+    border-bottom: 1px solid #c1c1c1;
+    margin-left: -30px;
+    margin-right: -30px;
+    padding: 0 30px;
+  }
+
   &__offer {
     color: #f04055;
     font-family: 'IRANYekan';
@@ -141,6 +153,11 @@ ul {
     font-weight: 800;
     font-size: 17px;
     color: #575757;
+
+    &--highlight {
+      color: #f04055;
+      margin-right: 8px;
+    }
   }
 
   &__icon {
