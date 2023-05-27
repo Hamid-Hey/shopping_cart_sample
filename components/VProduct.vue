@@ -12,6 +12,8 @@
     >
       click to add
     </button>
+
+
     <h2 class="v-product__description">
       {{ data.title }}
     </h2>
@@ -60,8 +62,23 @@ export default {
     addToCart(e) {
       e.stopPropagation()
 
-      this.$store.dispatch('addProduct', this.data)
+      const existingData = JSON.parse(localStorage.getItem('shoppingCart')) || []
+      existingData.unshift(this.data)
+
+      const updatedData = JSON.stringify(existingData)
+
+      localStorage.setItem('shoppingCart', updatedData);
+
+      const notification = JSON.parse(localStorage.getItem('shoppingCart')) || []
+
+      this.$emit('notification', notification.length)
     },
+
+    removeFromCart(e) {
+      e.stopPropagation()
+
+      this.$store.dispatch('removeProduct', this.data)
+    }
   },
 }
 </script>
@@ -75,6 +92,7 @@ export default {
   min-height: 463px;
   display: inline-block;
   direction: rtl;
+  cursor: pointer;
 
   &__title {
     color: #f04055;
