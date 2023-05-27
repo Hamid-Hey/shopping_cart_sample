@@ -2,6 +2,7 @@
   <div>
     <button
       :class="['v-btn', { 'v-btn--outline': outline, 'v-btn--icon': icon }]"
+      @click="method"
     >
       <slot></slot>
     </button>
@@ -20,7 +21,11 @@ export default {
     outline: {
       type: Boolean,
       default: false,
-    }
+    },
+    method: {
+      type: Function,
+      default: () => {},
+    },
   },
 }
 </script>
@@ -35,7 +40,6 @@ export default {
   text-align: center;
   display: block;
   width: 100%;
-  // vertical-align: middle;
   background: #f04055;
   padding: 10px 30px;
   border: none;
@@ -43,7 +47,6 @@ export default {
   color: #fff;
   font-size: 16px;
   font-weight: 400;
-  // margin: 8px;
 
   &--icon {
     display: flex;
